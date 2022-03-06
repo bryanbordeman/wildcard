@@ -95,7 +95,7 @@ class AddRounds extends Component {
                     size="large"
                     variant="contained" 
                     endIcon={<ArrowForwardIosIcon />}
-                    component={this.state.rounds > 0 && Link}
+                    component={Link}
                     to="/exercises"
                     >
                     Next

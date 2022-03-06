@@ -12,6 +12,8 @@ class AddExercises extends Component {
     
     render() { 
         const { classes } = this.props
+        // const isListEmpty = this.props.workouts? false : true
+        // console.log(this.props.workouts)
         return (
             <div>
                 <Stepper step={1}/>
@@ -38,7 +40,7 @@ class AddExercises extends Component {
                     size="large"
                     variant="contained" 
                     endIcon={<ArrowForwardIosIcon />}
-                    component={this.props.workouts.length > 0 && Link}
+                    component={Link}
                     to="/timer"
                     >
                     Next

@@ -230,7 +230,7 @@ class SelectWorkout extends Component {
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={this.handleClose}>Cancel</Button>
-                <Button onClick={movement && this.handleAddWorkout}>Add</Button>
+                <Button onClick={movement? this.handleAddWorkout : () => {}}>Add</Button>
                 </DialogActions>
             </Dialog>
         </div>);
