@@ -28,6 +28,7 @@ class WorkoutForm extends Component {
 
     componentDidMount(){
         // this.props.getWorkouts(this.state.workouts)
+       
     }
     componentWillUnmount(){
         localStorage.setItem("workouts", JSON.stringify(this.state.workouts));

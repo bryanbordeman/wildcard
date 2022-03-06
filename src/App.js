@@ -21,6 +21,8 @@ class App extends Component {
 
   componentDidMount(){
     this.setWindow()
+    this.setState({rounds: JSON.parse(window.localStorage.getItem("rounds"))})
+    this.setState({workouts: JSON.parse(window.localStorage.getItem("workouts"))})
   }
   componentDidUpdate(){
     window.addEventListener("resize", this.setWindow);

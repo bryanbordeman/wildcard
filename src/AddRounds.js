@@ -22,6 +22,11 @@ class AddRounds extends Component {
         if( this.props.rounds > 0 ){
             this.setState({rounds: this.props.rounds})
         }
+        
+    }
+    
+    componentWillUnmount(){
+        localStorage.setItem("rounds", JSON.stringify(this.state.rounds));
     }
 
     add(event){

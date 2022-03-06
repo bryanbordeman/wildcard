@@ -119,8 +119,8 @@ class SelectWorkout extends Component {
             movement: '',
             movementList: Object.values(workoutList)[0],
             categoryList: Object.keys(workoutList),
-            min:0, 
-            max:0
+            min:1, 
+            max:2
         })
     }
 
