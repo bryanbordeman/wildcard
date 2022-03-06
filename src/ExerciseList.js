@@ -12,10 +12,10 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
 
-class WorkoutForm extends Component {
+class ExerciseList extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -98,23 +98,20 @@ class WorkoutForm extends Component {
                 </Grid>
                 </Grid>
             </StyledPaper>
-            
         ))
         return (
             <div>
                 <SelectWorkout 
                     addWorkout={this.addWorkout} workoutList={workouts}
                 />
-                {workoutList.length > 0 && <Card sx={{ minWidth: 275 }}>
-                    <CardContent>
-                        <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-                            {workoutList}
-                        </Box>
-                    </CardContent>
-                </Card>}
+                {workoutList.length > 0 && 
+                    <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
+                        {workoutList}
+                    </Box>
+                }
             </div>
         );
     }
 }
 
-export default WorkoutForm;
+export default ExerciseList;

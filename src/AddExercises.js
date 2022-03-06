@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Stepper from './Stepper';
-import WorkoutForm from './WorkoutForm'
+import ExerciseList from './ExerciseList'
 import styles from './styles/AddExcercisesStyles'
 
 class AddExercises extends Component {
@@ -15,7 +15,7 @@ class AddExercises extends Component {
         return (
             <div>
                 <Stepper step={1}/>
-                <WorkoutForm 
+                <ExerciseList 
                     updateWorkouts={this.props.updateWorkouts}
                     workouts={this.props.workouts}/>
                 <div className={ classes.navButtons }>

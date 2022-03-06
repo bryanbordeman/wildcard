@@ -13,6 +13,9 @@ import { randomWorkout } from './randomWorkout'
 import beep from './audio/beep.mp3'
 import finalBeep from './audio/final-beep.mp3'
 
+
+// let newWorkout = randomWorkout(this.props.workouts)
+
 class Timer extends Component {
   // static defaultProps = {workout: 'Wall Ball Cluster Clean to Thruster'}
   // static defaultProps = {workout: 'Burpees'}
@@ -21,17 +24,18 @@ class Timer extends Component {
     this.state = {
       showWorkout: false,
       rounds: this.props.rounds,
-      round: 1,
+      round: 0,
       workouts: this.props.workouts,
       time: this.props.time,
-      firstTime: 3,
       isRunning: false,
       isFirstCountdown: true,
+      countdownTime: 10,
       isFinalCountdown: false,
       remainingTime : 0,
       timerColor: '#0071C4',
       workout: '',
-      reps: ''
+      reps: 1,
+      isFinshed: false
     }
   
     this.handleAnimation = this.handleAnimation.bind(this)
@@ -48,7 +52,7 @@ class Timer extends Component {
     let newWorkout = randomWorkout(this.props.workouts)
     // console.log(newWorkout)
     if (isNaN(newWorkout)) {
-        return this.setState({workout: newWorkout[0], reps: 0});;
+        return this.setState({workout: newWorkout[0], reps: 10});;
         }
         return this.setState({workout: newWorkout[0], reps: newWorkout.reps});
 }
@@ -69,18 +73,19 @@ finalBeep(){
     new Audio(finalBeep).play()
 }
 countDown(){
-  // if (this.isFirstCountdown){
-  //   let newTime = this.state.time - 1;
-  //   this.setState({time: newTime})
-  //   if (this.state.time === 0){
-  //     this.setState({isFirstCountdown: false, time: this.props.time})
-      
-  //   }
-
-  // }
-    // if (this.state.isFirstCountdown && this.state.firsTime > 0 ){
-    //   console.log(this.state.firstTime)
-    // }
+  if (this.state.isFirstCountdown){
+    let newTime = this.state.countdownTime - 1;
+    this.setState({countdownTime: newTime})
+    if(this.state.countdownTime <= 3){
+      this.beep()
+    }
+    if (this.state.countdownTime === 0){
+      this.setState({isFirstCountdown: false, time: this.props.time, round: 1})
+      this.finalBeep()
+      this.handleAnimation()
+    
+      }
+    } else {
 
     if (this.state.time === 0 && this.state.rounds > 0){
         let newRound = this.state.round + 1
@@ -111,7 +116,14 @@ countDown(){
         }
     } else {
         clearInterval(this.timer)
+        this.setState({
+          isFinshed: true, 
+          workout: 'thank you!!', 
+          reps: '',
+          round: 0})
+        
     }
+  }
 }
 
 stopTimer(){
@@ -121,18 +133,20 @@ stopTimer(){
 
 resetTimer(){
     clearInterval(this.timer)
-    let newWorkout = randomWorkout(this.props.workouts)
+    // let newWorkout = randomWorkout(this.props.workouts)
     this.setState(
         {   showWorkout: false,
             time: this.props.time,
             rounds: this.props.rounds,
-            round: 1,
+            round: 0,
             isRunning: false,
             isFirstCountdown: true,
+            countdownTime: 10,
             isFinalCountdown: false,
             timerColor: "#0071C4",
             workout: '',
-            reps: ''
+            reps: '',
+            isFinshed: false
             // workout: newWorkout[0],
             // reps: newWorkout.reps
         }
@@ -149,10 +163,23 @@ resetTimer(){
   render() { 
     
     const { classes, isLandscape  } = this.props
-    const { time, round, rounds, isRunning, workout, reps, showWorkout } = this.state
+    const { time, round, rounds, isRunning, 
+      workout, reps, showWorkout, countdownTime, 
+      isFirstCountdown, isFinshed } = this.state
     let displayRound = `${round}`.length > 1? round : `0${round}`
-    let displayTimer = `${time}`.length > 1? time : `0${time}`
+    let displayTimer = `${time}`.length > 1? `00:${time}` : `00:0${time}`
+    let displayCountdown = `${countdownTime}`.length > 1? `00:${countdownTime}` : `00:0${countdownTime}`
     
+    // if (time.length < 1){
+    //   let displayTimer = `00:0${time}`
+    // } 
+    // if (time === 60){
+    //   let displayTimer = '01:00'
+    // } else {
+    //   let displayTimer = `00:${time}`
+    // }
+    
+
     return (
       <div>
         <Button 
@@ -199,10 +226,10 @@ resetTimer(){
             }
 
             </div>
-            <Divider 
+            {!isFinshed && <Divider 
               orientation="vertical"
               variant="middle" 
-              flexItem/>
+              flexItem/>}
             <div className={classes.actionButton}>
               <IconButton 
                 style={styles.customIconButtonPortrait}
@@ -221,7 +248,13 @@ resetTimer(){
             {isLandscape && <Divider orientation="vertical" variant="middle" flexItem />}
             <div className={classes.rounds}>{displayRound}</div>
             <div>&nbsp;</div>
-            <div className={classes.time} >{displayTimer}</div>
+
+            { isFirstCountdown? 
+              <div className={classes.time} >{displayCountdown}</div> :
+              <div className={classes.time} >{time === 60? '01:00' : displayTimer}</div> 
+            }
+
+
             {isLandscape && <Divider style={{marginRight: '20px'}} orientation="vertical" variant="middle" flexItem />}
             <div 
               style={{display: `${isLandscape? '' : 'none'}`}} 
@@ -251,9 +284,9 @@ resetTimer(){
                 </IconButton>
               } 
               </div>
-              <Divider 
+              {!isFinshed && <Divider 
                 variant="middle"
-                flexItem />
+                flexItem />}
               <div className={classes.actionButton}>
                 <IconButton 
                   style={styles.customIconButton}
@@ -272,7 +305,7 @@ resetTimer(){
         </div>
       
         <div className={`${classes.workout} ${this.state.showWorkout && classes.showOverlay}`}>
-        {!showWorkout && reps != 0 && <h1>{reps} {workout}</h1>}
+        {!showWorkout && reps !== 0 && !isFirstCountdown && <h1>{reps} {workout}</h1>}
         </div>
         <div className={ `${classes.workoutBanner} ${this.state.showWorkout && classes.showWorkout}` }>
           <h1>{reps} {workout}</h1>

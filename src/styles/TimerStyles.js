@@ -68,7 +68,8 @@ export default {
         transform: 'scale(1)',
         zIndex: '25',
         transition: 'all 0.4s ease-in-out',
-        transitionDelay: '0.3s',
+        transitionDelay: '0.1s',
+        
     },
     timeContainer:{
         display: 'flex',
@@ -79,10 +80,12 @@ export default {
         fontSize: '18vw'
     },
     rounds:{
+        width: '1.75ch',
         marginLeft: '0.75rem',
         color: '#979797',
     },
     time:{
+        width: '4.25ch',
         marginRight: '.75rem',
         color: '#1875D1',
     },
