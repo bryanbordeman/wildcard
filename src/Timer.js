@@ -226,12 +226,12 @@ resetTimer(){
             }
 
             </div>
-            {!isFinshed && <Divider 
+            {!isFinshed && !isFirstCountdown && <Divider 
               orientation="vertical"
               variant="middle" 
               flexItem/>}
             <div className={classes.actionButton}>
-              <IconButton 
+              {!isFirstCountdown && <IconButton 
                 style={styles.customIconButtonPortrait}
                 color="primary" 
                 size="large"
@@ -240,7 +240,7 @@ resetTimer(){
                 <RestartAltIcon 
                   style={styles.customIconButtonPortrait}
                   fontSize="inherit"/>
-              </IconButton>
+              </IconButton>}
             </div>
           </div>
           {!isLandscape && <Divider variant="middle" flexItem/>}
@@ -284,11 +284,11 @@ resetTimer(){
                 </IconButton>
               } 
               </div>
-              {!isFinshed && <Divider 
+              {!isFinshed && !isFirstCountdown && <Divider 
                 variant="middle"
                 flexItem />}
               <div className={classes.actionButton}>
-                <IconButton 
+                {!isFirstCountdown && <IconButton 
                   style={styles.customIconButton}
                   color="primary" 
                   size="large"
@@ -297,7 +297,7 @@ resetTimer(){
                   <RestartAltIcon 
                     style={styles.customIconButton}
                     fontSize="inherit"/>
-                </IconButton>
+                </IconButton>}
               </div>
             </div>
           </div>

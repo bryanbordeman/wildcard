@@ -14,6 +14,13 @@ export default {
         marginBottom: '1rem'
     },
     round:{
+        marginTop: '30%',
+        fontFamily: 'Montserrat, sans-serif',
+        fontWeight: '700',
+        fontSize: '30vw',
+        color: '#1875D1'
+    },
+    roundLandscape:{
         fontFamily: 'Montserrat, sans-serif',
         fontWeight: '700',
         fontSize: '18vw',

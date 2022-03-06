@@ -46,14 +46,16 @@ class AddRounds extends Component {
     }
     
     render() { 
-        const { classes } = this.props
+        const { classes, isLandscape } = this.props
         const { rounds } = this.state
     
         return (
             <div>
                 <Stepper step={0}/>
                 <div className={ classes.roundContainer}>
-                    <div className={ classes.round }>
+                    <div 
+                    
+                        className={ isLandscape? classes.roundLandscape : classes.round }>
                         {rounds}
                     </div>
                     <div className={ classes.roundLabel }>

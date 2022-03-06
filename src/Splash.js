@@ -20,7 +20,6 @@ class Splash extends Component {
             open: false
         }
 
-     
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this)
     }
@@ -37,7 +36,7 @@ class Splash extends Component {
 
     render() { 
         const { open } = this.state
-        const { classes } = this.props
+        const { classes, isLandscape } = this.props
         return (
             <div>
                 <div className={classes.dialogButtonContainer}>
@@ -79,11 +78,11 @@ class Splash extends Component {
                     </Button>
                     </DialogActions>
                 </Dialog>
-
-
-                <div className={classes.logoContainer}>
+                <div 
+                    style={{marginTop: `${!isLandscape? '40%' : ''}`}}
+                    className={classes.logoContainer}>
                     <img 
-                        className={ classes.logo } 
+                        className={ !isLandscape? classes.logo : classes.logoLandscape } 
                         src={logo}
                         alt='wildcard-logo'/>
                 </div>

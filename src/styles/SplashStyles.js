@@ -5,10 +5,13 @@ export default {
         justifyContent: 'center',
     },
     logo: {
+        width: '80%'
+    },
+    logoLandscape: {
         width: '50%'
     },
     navButtons:{
-        margin: '3rem',
+        margin: '1.5rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
