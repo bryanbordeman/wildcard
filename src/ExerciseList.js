@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
+import { v4 as uuidv4 } from 'uuid';
 
 class ExerciseList extends Component {
     constructor(props){
@@ -35,13 +36,19 @@ class ExerciseList extends Component {
     }
 
     addWorkout(workout){
+        // check if exercise is already in the list
+        let isInList = false
+        for (let i = 0; i < this.state.workouts.length; i++){
+            isInList = (workout[0] === this.state.workouts[i][0])
+        }
+        if(!isInList){
         this.setState({
             workouts: [...this.state.workouts, workout]
         },
         () => {
             this.props.updateWorkouts(this.state.workouts);
         });
-
+        }
         
     }
 
@@ -74,11 +81,11 @@ class ExerciseList extends Component {
                 mx: 'auto',
                 p: 2,
                 }}
-                key={workout[0]}
+                key={uuidv4()}
             >
                 <Grid container wrap="nowrap" spacing={2}>
                 <Grid item xs zeroMinWidth>
-                    <ListItem key={workout[0]}
+                    <ListItem key={uuidv4()}
                         secondaryAction={
                             <IconButton onClick={ () => this.deleteWorkout(workout[0]) } edge="end" aria-label="delete">
                             <DeleteIcon />
@@ -91,6 +98,7 @@ class ExerciseList extends Component {
                             </Avatar>
                         </ListItemAvatar>
                         <ListItemText
+                            key={uuidv4()}
                             primary={workout[0]}
                             secondary={`Min: ${workout[1]} Max: ${workout[2]}`}
                         />
