@@ -20,7 +20,7 @@ class ExerciseList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            workouts: this.props.workouts || "[]"
+            workouts: this.props.workouts || ""
         }
 
         this.addWorkout = this.addWorkout.bind(this)
@@ -73,8 +73,8 @@ class ExerciseList extends Component {
             maxWidth: "auto",
             color: theme.palette.text.primary,
         }));
-
-        const workoutList = workouts.map(workout => (
+        
+        const workoutList = Object.keys(workouts).map(workout => (
             <StyledPaper
                 sx={{
                 my: 1,
@@ -87,7 +87,7 @@ class ExerciseList extends Component {
                 <Grid item xs zeroMinWidth>
                     <ListItem key={uuidv4()}
                         secondaryAction={
-                            <IconButton onClick={ () => this.deleteWorkout(workout[0]) } edge="end" aria-label="delete">
+                            <IconButton onClick={ () => this.deleteWorkout(workouts[workout][0]) } edge="end" aria-label="delete">
                             <DeleteIcon />
                             </IconButton>
                         }
@@ -99,8 +99,8 @@ class ExerciseList extends Component {
                         </ListItemAvatar>
                         <ListItemText
                             key={uuidv4()}
-                            primary={workout[0]}
-                            secondary={`Min: ${workout[1]} Max: ${workout[2]}`}
+                            primary={workouts[workout][0]}
+                            secondary={`Min: ${workouts[workout][1]} Max: ${workouts[workout][2]}`}
                         />
                     </ListItem>
                 </Grid>

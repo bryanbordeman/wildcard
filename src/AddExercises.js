@@ -40,7 +40,7 @@ class AddExercises extends Component {
                     size="large"
                     variant="contained" 
                     endIcon={<ArrowForwardIosIcon />}
-                    component={Link}
+                    component={this.props.workouts && Link}
                     to="/timer"
                     >
                     Next
