@@ -9,6 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,6 +19,7 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
+import { wildcardWorkout } from './wildcardWorkout';
 
 const styles = {
     addButtons:{
@@ -25,7 +27,11 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'column',
     },
+    button:{
+        margin: '0.25rem'
+    }
 }
 
 
@@ -51,6 +57,7 @@ class SelectWorkout extends Component {
         this.handleAddWorkout = this.handleAddWorkout.bind(this)
         this.handleClear = this.handleClear.bind(this)
         this.validateInput = this.validateInput.bind(this)
+        this.handleWildcard = this.handleWildcard.bind(this)
     }
     componentDidMount(){
         this.updateMovementMenu(this.state.category)
@@ -125,6 +132,16 @@ class SelectWorkout extends Component {
         })
     }
 
+    handleWildcard(){
+        const movement = wildcardWorkout(workoutList)
+        const min = 10
+        const max = 15
+            let workout = [movement, min, max]
+            this.props.addWorkout(workout)
+            // this.handleClear()
+            // this.handleClose()
+    }
+
     validateInput(){
         // check to see if movement is already in this.props.workoutList
         // check if max is higher than min
@@ -149,10 +166,22 @@ class SelectWorkout extends Component {
         return (
         <div>
             <div className={ classes.addButtons }>
+                <div className={ classes.button }>
                 <Button 
                     variant='outlined' 
                     endIcon={<AddIcon />}
-                    onClick={this.handleClickOpen}>Select Exercise</Button>
+                    onClick={this.handleClickOpen}>
+                        Select Exercise
+                </Button>
+                </div>
+                <div className={ classes.button }>
+                <Button 
+                    variant='outlined' 
+                    endIcon={<ShuffleOutlinedIcon />}
+                    onClick={this.handleWildcard}>
+                        Wildcard Pick
+                </Button>
+                </div>
             </div>
             <Dialog open={open} onClose={this.handleClose}>
                 <DialogTitle>Select Exercise</DialogTitle>

@@ -23,11 +23,11 @@ const workoutList = {
         "Push-ups",
         "Sit-ups"],
     "Monostructural Movements":
-        ["Run",
+        ["Meter: Run",
         "Double Under",
         "Handstand Walk"],
     "Dumbbell Movements":
-         ["Dumbell Hang Power Clean (no squat)",
+        ["Dumbell Hang Power Clean (no squat)",
         "Dumbbell Overhead Squat",
         "Dumbbell Hange Clean",
         "Dumbbell Power Snatch",
@@ -60,13 +60,13 @@ const workoutList = {
         ["GHD: Glute-ham Developer"],
     "Wallball Movements":
         ["Wall Ball",
-          "Wall Ball Cluster Clean to Thruster",
-          "Wall Ball sit-up"],
+        "Wall Ball Cluster Clean to Thruster",
+        "Wall Ball sit-up"],
     "Ring Movements":
         ["Muscle Up", 
         "Ring Row"],
     "Bike Movements":
-        ["ARDNE Airdyne Bike (or Air Assault)"],
+        ["CAL: Airdyne Bike (or Air Assault)"],
     "Rower Movements":
         ["CAL: Calorie Row"]
     }

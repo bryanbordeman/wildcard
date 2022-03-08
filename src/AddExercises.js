@@ -11,15 +11,15 @@ import styles from './styles/AddExcercisesStyles'
 class AddExercises extends Component {
     
     render() { 
-        const { classes } = this.props
-        // const isListEmpty = this.props.workouts? false : true
-        // console.log(this.props.workouts)
+        const { classes, workouts, updateWorkouts } = this.props
+        const isListEmpty = this.props.workouts === undefined  || 
+        this.props.workouts.length == 0
         return (
             <div>
                 <Stepper step={1}/>
                 <ExerciseList 
-                    updateWorkouts={this.props.updateWorkouts}
-                    workouts={this.props.workouts}/>
+                    updateWorkouts={updateWorkouts}
+                    workouts={workouts}/>
                 <div className={ classes.navButtons }>
                     <Button 
                     sx={{
@@ -33,18 +33,18 @@ class AddExercises extends Component {
                     >
                     Back
                     </Button>
-                    <Button 
+                    {!isListEmpty && <Button 
                     sx={{
                     marginLeft: '10px'
                     }}
                     size="large"
                     variant="contained" 
                     endIcon={<ArrowForwardIosIcon />}
-                    component={this.props.workouts && Link}
+                    component={Link}
                     to="/timer"
                     >
                     Next
-                    </Button>
+                    </Button>}
                 </div>
             </div>
         );
