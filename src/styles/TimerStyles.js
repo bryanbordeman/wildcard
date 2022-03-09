@@ -108,5 +108,20 @@ export default {
     },
     customIconButtonPortrait:{
         fontSize: '12vw',
+    },
+    muteButtonContainer:{
+        zIndex: '10',
+        display: 'flex',
+        alignItems: 'right',
+        justifyContent: 'right',
+    
+    },
+    muteButton:{
+        fontSize: '0px'
+    },
+    topButtonContainer:{
+        display: 'flex',
+        justifyContent: 'space-between'
+
     }
 };

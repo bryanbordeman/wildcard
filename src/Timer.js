@@ -8,6 +8,9 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PauseCircleOutlineRoundedIcon from '@mui/icons-material/PauseCircleOutlineRounded';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import VolumeMuteOutlinedIcon from '@mui/icons-material/VolumeMuteOutlined';
+import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
+
 import styles from './styles/TimerStyles'
 import { randomWorkout } from './randomWorkout'
 import beep from './audio/beep.mp3'
@@ -32,10 +35,12 @@ class Timer extends Component {
       timerColor: '#0071C4',
       workout: '',
       reps: 1,
-      isFinshed: false
+      isFinshed: false,
+      isMuted: true
     }
   
     this.handleAnimation = this.handleAnimation.bind(this)
+    this.handleSound = this.handleSound.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.countDown = this.countDown.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
@@ -155,32 +160,56 @@ resetTimer(){
     setTimeout(() => this.setState({showWorkout: false}), 2000)
   }
 
+  handleSound(){
+    this.setState({isMuted: !this.state.isMuted})
+  }
+
   
   render() { 
     
     const { classes, isLandscape  } = this.props
     const { time, round, rounds, isRunning, 
       workout, reps, showWorkout, countdownTime, 
-      isFirstCountdown, isFinshed, timerColor } = this.state
+      isFirstCountdown, isFinshed, timerColor, isMuted } = this.state
     let displayRound = `${round}`.length > 1? round : `0${round}`
     let displayTimer = `${time}`.length > 1? `00:${time}` : `00:0${time}`
     let displayCountdown = `${countdownTime}`.length > 1? `00:${countdownTime}` : `00:0${countdownTime}`
     
     return (
       <div>
-        <Button 
-          sx={{
-            margin: '20px'
-          }}
-          size="large"
-          variant="outlined" 
-          startIcon={<ArrowBackIosIcon />}
-          component={Link}
-          to="/exercises"
-          >
-          Back
-        </Button>
-        
+        <div className={classes.topButtonContainer}>
+          <div>
+            <Button 
+              sx={{
+                margin: '20px'
+              }}
+              size="large"
+              variant="outlined" 
+              startIcon={<ArrowBackIosIcon />}
+              component={Link}
+              to="/exercises"
+              >
+              Back
+            </Button>
+          </div>
+          <div className={classes.muteButtonContainer}>
+            <div className={classes.muteButton}>
+                <IconButton 
+                    style={styles.customIconButton}
+                    color="primary" 
+                    size="large"
+                    aria-label="info"
+                    onClick={this.handleSound}>
+                    {isMuted? <VolumeMuteOutlinedIcon 
+                    style={styles.customIconButton} 
+                    fontSize="inherit"/> :
+                    <VolumeOffOutlinedIcon 
+                    style={styles.customIconButton} 
+                    fontSize="inherit"/>}
+                </IconButton>
+              </div>
+            </div>
+        </div>
         <div 
           style={{marginTop: `${!isLandscape? '30%' : ''}`}}>
           <div 
