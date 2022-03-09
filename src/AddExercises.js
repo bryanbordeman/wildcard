@@ -9,11 +9,20 @@ import ExerciseList from './ExerciseList'
 import styles from './styles/AddExcercisesStyles'
 
 class AddExercises extends Component {
+    constructor(props){
+        super(props);
+        this.state = {workouts: this.props.workouts || []}
+    }
+    componentDidMount(){
+        this.setState({workouts: this.props.workouts || []})
+    }
     
     render() { 
-        const { classes, workouts, updateWorkouts } = this.props
-        const isListEmpty = this.props.workouts === undefined  || 
-        this.props.workouts.length == 0
+        const { workouts } = this.state
+        const { classes, updateWorkouts } = this.props
+        const isListEmpty = workouts === undefined  || 
+        this.props.workouts.length === 0
+        // const isListEmpty = false
         return (
             <div>
                 <Stepper step={1}/>

@@ -13,9 +13,6 @@ import { randomWorkout } from './randomWorkout'
 import beep from './audio/beep.mp3'
 import finalBeep from './audio/final-beep.mp3'
 
-
-// let newWorkout = randomWorkout(this.props.workouts)
-
 class Timer extends Component {
   // static defaultProps = {workout: 'Wall Ball Cluster Clean to Thruster'}
   // static defaultProps = {workout: 'Burpees'}
@@ -47,12 +44,10 @@ class Timer extends Component {
   }
 
   componentDidMount(){
- 
     clearInterval(this.timer)
     let newWorkout = randomWorkout(this.props.workouts)
-    // console.log(newWorkout)
     if (isNaN(newWorkout)) {
-        return this.setState({workout: newWorkout[0], reps: 10});;
+        return this.setState({workout: newWorkout[0], reps: newWorkout.reps});;
         }
         return this.setState({workout: newWorkout[0], reps: newWorkout.reps});
 }
@@ -66,6 +61,7 @@ startTimer(){
 
 beep(){
     // beeps at 3 seconds
+    // beep.load()
     new Audio(beep).play()
 }
 finalBeep(){
@@ -77,11 +73,13 @@ countDown(){
     let newTime = this.state.countdownTime - 1;
     this.setState({countdownTime: newTime})
     if(this.state.countdownTime <= 3){
+      this.setState({timerColor: "#ba000d" })
       this.beep()
     }
     if (this.state.countdownTime === 0){
       this.setState({isFirstCountdown: false, time: this.props.time, round: 1})
       this.finalBeep()
+      this.setState({timerColor: "#0071C4" })
       this.handleAnimation()
     
       }
@@ -108,7 +106,7 @@ countDown(){
         }
         if(this.state.isFinalCountdown && this.state.time > 0){
             this.beep()
-            this.setState({timerColor: "red" })
+            this.setState({timerColor: "#ba000d" })
         }
         if(this.state.time === 0){
             this.finalBeep()
@@ -133,7 +131,7 @@ stopTimer(){
 
 resetTimer(){
     clearInterval(this.timer)
-    // let newWorkout = randomWorkout(this.props.workouts)
+    let newWorkout = randomWorkout(this.props.workouts)
     this.setState(
         {   showWorkout: false,
             time: this.props.time,
@@ -144,11 +142,9 @@ resetTimer(){
             countdownTime: 10,
             isFinalCountdown: false,
             timerColor: "#0071C4",
-            workout: '',
-            reps: '',
-            isFinshed: false
-            // workout: newWorkout[0],
-            // reps: newWorkout.reps
+            isFinshed: false,
+            workout: newWorkout[0],
+            reps: newWorkout.reps
         }
     )
 }
@@ -165,21 +161,11 @@ resetTimer(){
     const { classes, isLandscape  } = this.props
     const { time, round, rounds, isRunning, 
       workout, reps, showWorkout, countdownTime, 
-      isFirstCountdown, isFinshed } = this.state
+      isFirstCountdown, isFinshed, timerColor } = this.state
     let displayRound = `${round}`.length > 1? round : `0${round}`
     let displayTimer = `${time}`.length > 1? `00:${time}` : `00:0${time}`
     let displayCountdown = `${countdownTime}`.length > 1? `00:${countdownTime}` : `00:0${countdownTime}`
     
-    // if (time.length < 1){
-    //   let displayTimer = `00:0${time}`
-    // } 
-    // if (time === 60){
-    //   let displayTimer = '01:00'
-    // } else {
-    //   let displayTimer = `00:${time}`
-    // }
-    
-
     return (
       <div>
         <Button 
@@ -250,8 +236,14 @@ resetTimer(){
             <div>&nbsp;</div>
 
             { isFirstCountdown? 
-              <div className={classes.time} >{displayCountdown}</div> :
-              <div className={classes.time} >{time === 60? '01:00' : displayTimer}</div> 
+              <div 
+                className={classes.time}
+                style={{color: `${timerColor}`}}
+                >{displayCountdown}</div> :
+              <div 
+                className={classes.time} 
+                style={{color: `${timerColor}`}}
+                >{time === 60? '01:00' : displayTimer}</div> 
             }
 
 
@@ -315,5 +307,5 @@ resetTimer(){
     );
   }
 }
- 
+
 export default withStyles(styles)(Timer);
