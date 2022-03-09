@@ -67,11 +67,14 @@ startTimer(){
 beep(){
     // beeps at 3 seconds
     // beep.load()
-    new Audio(beep).play()
+    if(!this.state.isMuted){
+      new Audio(beep).play()}
 }
 finalBeep(){
     //beeps at 0 seconds
+    if(!this.state.isMuted){
     new Audio(finalBeep).play()
+    }
 }
 countDown(){
   if (this.state.isFirstCountdown){
@@ -200,10 +203,10 @@ resetTimer(){
                     size="large"
                     aria-label="info"
                     onClick={this.handleSound}>
-                    {isMuted? <VolumeMuteOutlinedIcon 
+                    {isMuted? <VolumeOffOutlinedIcon 
                     style={styles.customIconButton} 
                     fontSize="inherit"/> :
-                    <VolumeOffOutlinedIcon 
+                    <VolumeMuteOutlinedIcon
                     style={styles.customIconButton} 
                     fontSize="inherit"/>}
                 </IconButton>
