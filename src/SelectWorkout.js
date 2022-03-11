@@ -44,8 +44,8 @@ class SelectWorkout extends Component {
             movement: '',
             movementList: Object.values(workoutList)[0],
             categoryList: Object.keys(workoutList),
-            min:1, 
-            max:2
+            min:10, 
+            max:15
         }
 
         this.handleChange = this.handleChange.bind(this)

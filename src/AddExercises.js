@@ -13,16 +13,16 @@ class AddExercises extends Component {
         super(props);
         this.state = {workouts: this.props.workouts || []}
     }
-    componentDidMount(){
-        this.setState({workouts: this.props.workouts || []})
-    }
+    // componentDidMount(){
+    //     this.setState({workouts: JSON.parse(window.localStorage.getItem("workouts"))})
+    // }
     
     render() { 
         const { workouts } = this.state
         const { classes, updateWorkouts } = this.props
-        const isListEmpty = workouts === undefined  || 
-        this.props.workouts.length === 0
-        // const isListEmpty = false
+        // const isListEmpty = workouts === undefined  || 
+        // this.props.workouts.length === 0
+        const isListEmpty = false
         return (
             <div>
                 <Stepper step={1}/>

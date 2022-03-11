@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import logo from './images/wildcard_logo.svg'
@@ -12,33 +12,27 @@ import DialogTitle from '@mui/material/DialogTitle';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import IconButton from '@mui/material/IconButton';
 import styles from './styles/SplashStyles'
+import InstallPWA from './InstallPWA';
+import useIsIOS from './useIsIOS';
 
-class Splash extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            open: false
-        }
+function Splash(props) {
+    const [open, setOpen] = React.useState(false);
 
-        this.handleClickOpen = this.handleClickOpen.bind(this)
-        this.handleClose = this.handleClose.bind(this)
-    }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
 
-    handleClickOpen(){
-        this.setState({open: true})
-    }
-    
-    handleClose(){
-        this.setState({open: false})
-    }
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     
-
-    render() { 
-        const { open } = this.state
-        const { classes, isLandscape } = this.props
+        const { classes, isLandscape } = props
+        const { prompt } = useIsIOS();
         return (
             <div>
+                {prompt && <InstallPWA />}
+                {/* <InstallPWA /> */}
                 <div className={classes.dialogButtonContainer}>
                     <div className={classes.dialogButton}>
                         <IconButton 
@@ -46,7 +40,7 @@ class Splash extends Component {
                             color="primary" 
                             size="large"
                             aria-label="info"
-                            onClick={this.handleClickOpen}>
+                            onClick={handleClickOpen}>
                             <InfoOutlinedIcon 
                             style={styles.customIconButton} 
                             fontSize="inherit"/>
@@ -55,7 +49,7 @@ class Splash extends Component {
                 </div>
                 <Dialog
                     open={open}
-                    onClose={this.handleClose}
+                    onClose={handleClose}
                     aria-labelledby="responsive-dialog-title"
                 >
                     <DialogTitle id="responsive-dialog-title">
@@ -73,7 +67,7 @@ class Splash extends Component {
                     </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={this.handleClose} autoFocus>
+                    <Button onClick={handleClose} autoFocus>
                         Close
                     </Button>
                     </DialogActions>
@@ -99,6 +93,6 @@ class Splash extends Component {
             </div>
         );
     }
-}
- 
+
+
 export default withStyles(styles)(Splash);
