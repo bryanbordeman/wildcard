@@ -10,7 +10,8 @@ class App extends Component {
       windowWidth: 0,
       isLandscape: null,
       rounds: 0,
-      workouts: []
+      workouts: [],
+      isListEmpty: true
     }
 
     this.setWindow = this.setWindow.bind(this)
@@ -35,8 +36,20 @@ class App extends Component {
   }
 
   updateWorkouts(workouts){
-    this.setState({workouts: workouts})
+    this.setState({workouts: workouts}, () => (
+      this.setState({isListEmpty: this.arrayIsEmpty(this.state.workouts)})
+    ))
   }
+
+  arrayIsEmpty(array) {
+    if (!Array.isArray(array)) {
+        return false;
+    }
+    if (array.length === 0) {
+        return true;
+    }
+    return false;
+}
 
   setWindow(){
     this.setState({windowWidth: window.innerWidth, windowHeight: window.innerHeight},
@@ -44,7 +57,7 @@ class App extends Component {
   }
 
   render() { 
-    const { isLandscape, rounds, workouts } = this.state
+    const { isLandscape, rounds, workouts, isListEmpty } = this.state
     return (
       <div>
         <BrowserRouter>
@@ -54,6 +67,7 @@ class App extends Component {
             rounds={rounds}
             updateWorkouts={this.updateWorkouts}
             workouts={workouts}
+            isListEmpty={isListEmpty}
             />
         </BrowserRouter>
       </div>

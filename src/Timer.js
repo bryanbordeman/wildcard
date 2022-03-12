@@ -151,7 +151,7 @@ resetTimer(){
             isFinalCountdown: false,
             timerColor: "#0071C4",
             isFinshed: false,
-            workout: newWorkout[0],
+            workout: newWorkout.movement,
             reps: newWorkout.reps
         }
     )

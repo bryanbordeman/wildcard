@@ -11,19 +11,14 @@ import styles from './styles/AddExcercisesStyles'
 class AddExercises extends Component {
     constructor(props){
         super(props);
-        this.state = {workouts: this.props.workouts || []}
+        this.state = {
+            workouts: this.props.workouts || []}
     }
-    componentDidMount(){
-        // console.log(this.state.workouts)
-        // console.log(JSON.parse(window.localStorage.getItem("workouts")))
-    }
-    
+ 
     render() { 
         const { workouts } = this.state
         const { classes, updateWorkouts } = this.props
-        const isListEmpty = this.props.workouts === undefined  || 
-        this.props.workouts.length === 0
-        // const isListEmpty = false
+        
         return (
             <div>
                 <Stepper step={1}/>
@@ -43,7 +38,7 @@ class AddExercises extends Component {
                     >
                     Back
                     </Button>
-                    {!isListEmpty && <Button 
+                    {!this.props.isListEmpty && <Button 
                     sx={{
                     marginLeft: '10px'
                     }}

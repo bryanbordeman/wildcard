@@ -120,16 +120,9 @@ class SelectWorkout extends Component {
                 min:min, 
                 max:max,
                 id: movement}
-            // console.log(workout)
             this.props.addWorkout(workout)
             this.handleClear()
             this.handleClose()
-
-        // let { movement, min, max } = this.state
-        // let workout = [movement, min, max]
-        // this.props.addWorkout(workout)
-        // this.handleClear()
-        // this.handleClose()
     }
 
     handleClear(){

@@ -51,6 +51,7 @@ class MainRoutes extends Component {
                                     isLandscape={isLandscape}
                                     updateWorkouts={this.props.updateWorkouts}
                                     workouts={this.props.workouts}
+                                    isListEmpty={this.props.isListEmpty}
                                     />} />
                     <Route 
                         exact 
@@ -59,7 +60,7 @@ class MainRoutes extends Component {
                                     isLandscape={isLandscape}
                                     workouts={this.props.workouts}
                                     rounds={this.props.rounds}
-                                    time={5}
+                                    time={60}
                                     />} />
                     <Route render={() => <h1>Error 404</h1>}/>
                 </Routes>
