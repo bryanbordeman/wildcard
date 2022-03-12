@@ -3,9 +3,9 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+// import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
+import IosShareOutlined from '@mui/icons-material/IosShareOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import Divider from '@mui/material/Divider';
 
@@ -46,7 +46,7 @@ return (
                 sx={{marginTop:'0.5rem',
                 marginBottom:'0.5rem'}}/>
                 <div>
-                    <SystemUpdateAltOutlinedIcon
+                    <IosShareOutlined
                         sx={{marginRight:'0.5rem'}}
                         color='primary'/> 
                     Tap the Share Icon 

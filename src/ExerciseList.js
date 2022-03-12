@@ -20,11 +20,12 @@ class ExerciseList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            exercises: this.props.workouts || [],
+            exercises: this.props.workouts || []
         }
 
         this.addWorkout = this.addWorkout.bind(this)
         this.deleteWorkout = this.deleteWorkout.bind(this)
+        this.editWorkout = this.editWorkout.bind(this)
     }
 
     componentDidMount(){
@@ -54,6 +55,10 @@ class ExerciseList extends Component {
         });
     }
 
+    editWorkout(id){
+        console.log(id)
+    }
+
     render() { 
         const { workouts, exercises } = this.state
 
@@ -71,7 +76,9 @@ class ExerciseList extends Component {
                 my: 1,
                 mx: 'auto',
                 p: 2,
+                cursor: 'pointer'
                 }}
+                // onClick={ () => this.editWorkout(exercise.id) } 
                 key={uuidv4()}
             >
                 <Grid container wrap="nowrap" spacing={2}>
@@ -101,7 +108,8 @@ class ExerciseList extends Component {
         return (
             <div>
                 <SelectWorkout 
-                    addWorkout={this.addWorkout} workoutList={workouts}
+                    addWorkout={this.addWorkout} 
+                    workoutList={workouts}
                 />
                 {exerciseList.length > 0 && 
                     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
