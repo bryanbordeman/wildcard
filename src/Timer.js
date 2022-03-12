@@ -52,9 +52,9 @@ class Timer extends Component {
     clearInterval(this.timer)
     let newWorkout = randomWorkout(this.props.workouts)
     if (isNaN(newWorkout)) {
-        return this.setState({workout: newWorkout[0], reps: newWorkout.reps});;
+        return this.setState({workout: newWorkout.movement, reps: newWorkout.reps});;
         }
-        return this.setState({workout: newWorkout[0], reps: newWorkout.reps});
+        return this.setState({workout: newWorkout.movement, reps: newWorkout.reps});
 }
 componentWillUnmount(){
     clearInterval(this.timer)
@@ -99,7 +99,7 @@ countDown(){
         this.setState({rounds: newRounds, round: newRound})
         if (this.state.rounds > 0){
             let newWorkout = randomWorkout(this.props.workouts)
-            this.setState({time: this.props.time + 1, workout: newWorkout[0], reps: newWorkout.reps})
+            this.setState({time: this.props.time + 1, workout: newWorkout.movement, reps: newWorkout.reps})
         }
         clearInterval(this.timer)
         this.setState({isFinalCountdown: false})

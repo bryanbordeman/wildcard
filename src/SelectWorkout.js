@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { v4 as uuidv4 } from 'uuid';
 import { withStyles } from '@mui/styles';
 import workoutList from './workoutList'
 import Box from '@mui/material/Box';
@@ -114,10 +115,21 @@ class SelectWorkout extends Component {
     handleAddWorkout(){
         
         let { movement, min, max } = this.state
-            let workout = [movement, min, max]
+            let workout = {
+                movement: movement, 
+                min:min, 
+                max:max,
+                id: movement}
+            // console.log(workout)
             this.props.addWorkout(workout)
             this.handleClear()
             this.handleClose()
+
+        // let { movement, min, max } = this.state
+        // let workout = [movement, min, max]
+        // this.props.addWorkout(workout)
+        // this.handleClear()
+        // this.handleClose()
     }
 
     handleClear(){
@@ -127,8 +139,8 @@ class SelectWorkout extends Component {
             movement: '',
             movementList: Object.values(workoutList)[0],
             categoryList: Object.keys(workoutList),
-            min:1, 
-            max:2
+            min:10, 
+            max:15
         })
     }
 
@@ -136,7 +148,11 @@ class SelectWorkout extends Component {
         const movement = wildcardWorkout(workoutList)
         const min = 10
         const max = 15
-            let workout = [movement, min, max]
+            let workout = {
+                movement: movement, 
+                min:min, 
+                max:max,
+                id: movement}
             this.props.addWorkout(workout)
             // this.handleClear()
             // this.handleClose()

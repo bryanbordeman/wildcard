@@ -20,51 +20,38 @@ class ExerciseList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            workouts: this.props.workouts || ""
+            exercises: this.props.workouts || [],
         }
 
         this.addWorkout = this.addWorkout.bind(this)
         this.deleteWorkout = this.deleteWorkout.bind(this)
     }
 
-    componentDidMount(){
-        // this.props.getWorkouts(this.state.workouts)
-    
-    }
     componentWillUnmount(){
-        localStorage.setItem("workouts", JSON.stringify(this.state.workouts || "[]"));
+        localStorage.setItem("workouts", JSON.stringify(this.state.exercises || []));
     }
 
     addWorkout(workout){
-        // check if exercise is already in the list
-        let isInList = false
-        for (let i = 0; i < this.state.workouts.length; i++){
-            isInList = (workout[0] === this.state.workouts[i][0])
-        }
-        if(!isInList){
+        let filteredExercise = this.state.exercises.filter(exercise => exercise.id !== workout.id);
         this.setState({
-            workouts: [...this.state.workouts, workout]
+            exercises: [...filteredExercise, workout]
         },
         () => {
-            this.props.updateWorkouts(this.state.workouts);
+            this.props.updateWorkouts(this.state.exercises);
         });
-        }
-        
     }
 
     deleteWorkout(workout){
         this.setState((prevState) => ({
-            workouts: prevState.workouts.filter(w => w[0] !== workout),
-            
+            exercises: prevState.exercises.filter(exercise => exercise.id !== workout),
         }),
         () => {
-            this.props.updateWorkouts(this.state.workouts);
+            this.props.updateWorkouts(this.state.exercises);
         });
-        
     }
 
     render() { 
-        const { workouts } = this.state
+        const { workouts, exercises } = this.state
 
         const StyledPaper = styled(Paper)(({ theme }) => ({
             backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -73,8 +60,8 @@ class ExerciseList extends Component {
             maxWidth: "auto",
             color: theme.palette.text.primary,
         }));
-        
-        const workoutList = Object.keys(workouts).map(workout => (
+
+        const exerciseList = Object(exercises).map(exercise => (
             <StyledPaper
                 sx={{
                 my: 1,
@@ -87,7 +74,7 @@ class ExerciseList extends Component {
                 <Grid item xs zeroMinWidth>
                     <ListItem key={uuidv4()}
                         secondaryAction={
-                            <IconButton onClick={ () => this.deleteWorkout(workouts[workout][0]) } edge="end" aria-label="delete">
+                            <IconButton onClick={ () => this.deleteWorkout(exercise.id) } edge="end" aria-label="delete">
                             <DeleteIcon />
                             </IconButton>
                         }
@@ -99,8 +86,8 @@ class ExerciseList extends Component {
                         </ListItemAvatar>
                         <ListItemText
                             key={uuidv4()}
-                            primary={workouts[workout][0]}
-                            secondary={`Min: ${workouts[workout][1]} Max: ${workouts[workout][2]}`}
+                            primary={exercise.movement}
+                            secondary={`Min: ${exercise.min} Max: ${exercise.max}`}
                         />
                     </ListItem>
                 </Grid>
@@ -112,9 +99,9 @@ class ExerciseList extends Component {
                 <SelectWorkout 
                     addWorkout={this.addWorkout} workoutList={workouts}
                 />
-                {workoutList.length > 0 && 
+                {exerciseList.length > 0 && 
                     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-                        {workoutList}
+                        {exerciseList}
                     </Box>
                 }
             </div>
