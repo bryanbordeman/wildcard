@@ -27,6 +27,10 @@ class ExerciseList extends Component {
         this.deleteWorkout = this.deleteWorkout.bind(this)
     }
 
+    componentDidMount(){
+        this.props.updateWorkouts(this.state.exercises);
+    }
+
     componentWillUnmount(){
         localStorage.setItem("workouts", JSON.stringify(this.state.exercises || []));
     }

@@ -14,7 +14,7 @@ class AddExercises extends Component {
         this.state = {
             workouts: this.props.workouts || []}
     }
- 
+
     render() { 
         const { workouts } = this.state
         const { classes, updateWorkouts } = this.props

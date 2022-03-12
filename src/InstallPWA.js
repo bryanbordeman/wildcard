@@ -6,7 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import SystemUpdateAltOutlinedIcon from '@mui/icons-material/SystemUpdateAltOutlined';
-// import React, { useState, useEffect } from 'react';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import Divider from '@mui/material/Divider';
 
 export default function InstallPWA() {
 const [open, setOpen] = React.useState(true);
@@ -39,10 +40,27 @@ return (
             {"Install Wildcard EMOM"}
             </DialogTitle>
             <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <div>
                 Install this application on your homescreen for a better experience.
-                <p><SystemUpdateAltOutlinedIcon/> &quot; then Add to Home Screen&quot;</p>
-            </DialogContentText>
+                <Divider
+                sx={{marginTop:'0.5rem',
+                marginBottom:'0.5rem'}}/>
+                <div>
+                    <SystemUpdateAltOutlinedIcon
+                        sx={{marginRight:'0.5rem'}}
+                        color='primary'/> 
+                    Tap the Share Icon 
+                </div> 
+                <Divider
+                sx={{marginTop:'0.5rem',
+                marginBottom:'0.5rem'}}/>
+                <div>
+                    <AddBoxOutlinedIcon
+                    sx={{marginRight:'0.5rem'}}
+                    color='primary'/>
+                    Then Add to Home Screen
+                </div>
+            </div>
             </DialogContent>
             <DialogActions>
             <Button onClick={handleClose}>Close</Button>
