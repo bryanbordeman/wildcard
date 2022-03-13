@@ -48,7 +48,7 @@ class Timer extends Component {
     
   }
 
-  componentDidMount(){
+componentDidMount(){
     clearInterval(this.timer)
     let newWorkout = randomWorkout(this.props.workouts)
     if (isNaN(newWorkout)) {

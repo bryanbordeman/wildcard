@@ -5,22 +5,22 @@ import { styled } from '@mui/material/styles';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
+import Edit from '@mui/icons-material/Edit';
 import { v4 as uuidv4 } from 'uuid';
+import EditWorkout from './EditWorkout';
 
 class ExerciseList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            exercises: this.props.workouts || []
+            exercises: this.props.workouts || [],
+            edit: false,
+            editWorkout:{}
         }
 
         this.addWorkout = this.addWorkout.bind(this)
@@ -56,7 +56,12 @@ class ExerciseList extends Component {
     }
 
     editWorkout(id){
-        console.log(id)
+        let workout = this.state.exercises.filter(exercise => exercise.id === id);
+        this.setState({edit: true, editWorkout: workout[0]});
+    }
+
+    closeDialog= () => {
+        this.setState({edit: false});
     }
 
     render() { 
@@ -76,24 +81,28 @@ class ExerciseList extends Component {
                 my: 1,
                 mx: 'auto',
                 p: 2,
-                cursor: 'pointer'
                 }}
-                // onClick={ () => this.editWorkout(exercise.id) } 
                 key={uuidv4()}
             >
                 <Grid container wrap="nowrap" spacing={2}>
                 <Grid item xs zeroMinWidth>
-                    <ListItem key={uuidv4()}
+                    <ListItem 
+                        key={uuidv4()}
                         secondaryAction={
-                            <IconButton onClick={ () => this.deleteWorkout(exercise.id) } edge="end" aria-label="delete">
+                            <IconButton 
+                                edge="end" 
+                                aria-label="delete"
+                                onClick={ () => this.deleteWorkout(exercise.id) } >
                             <DeleteIcon />
                             </IconButton>
                         }
                     >
                         <ListItemAvatar>
-                            <Avatar>
-                            <FitnessCenterIcon />
-                            </Avatar>
+                            <IconButton
+                                color='primary'
+                                onClick={ () => this.editWorkout(exercise.id) } >
+                                <Edit/>
+                            </IconButton>
                         </ListItemAvatar>
                         <ListItemText
                             key={uuidv4()}
@@ -107,6 +116,13 @@ class ExerciseList extends Component {
         ))
         return (
             <div>
+                {this.state.edit && 
+                        <EditWorkout 
+                            key={uuidv4()}
+                            exercise={this.state.editWorkout}
+                            addWorkout={this.addWorkout} 
+                            open={this.state.edit}
+                            closeDialog={this.closeDialog}/>}
                 <SelectWorkout 
                     addWorkout={this.addWorkout} 
                     workoutList={workouts}
