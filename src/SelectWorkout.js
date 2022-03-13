@@ -239,7 +239,12 @@ class SelectWorkout extends Component {
                                 name='min'
                                 value={min}
                             >-</Button>
-                            <Button disabled>{min}</Button>
+                            <Button 
+                            sx={{
+                                cursor: 'default',
+                                pointerEvents: 'none',
+                            }}
+                            >{min}</Button>
                             <Button 
                                 onClick={this.add}
                                 name='min'
@@ -257,7 +262,12 @@ class SelectWorkout extends Component {
                                 name='max'
                                 value={max}
                             >-</Button>
-                            <Button disabled>{max}</Button>
+                            <Button 
+                                sx={{
+                                    cursor: 'default',
+                                    pointerEvents: 'none',
+                                }}
+                                >{max}</Button>
                             <Button 
                                 onClick={this.add}
                                 name='max'

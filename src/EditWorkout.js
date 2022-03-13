@@ -84,13 +84,8 @@ class EditWorkout extends Component {
         return (
         <div>
             <Dialog open={this.props.open} onClose={this.handleClose}>
-                <DialogTitle>Edit Exercise</DialogTitle>
+                <DialogTitle>{movement}</DialogTitle>
                 <DialogContent>
-                <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-                    <Typography display="block" gutterBottom>
-                            {movement}
-                    </Typography>
-                </Box>
                 <Stack 
                     direction="row" 
                     spacing={2}
@@ -107,7 +102,12 @@ class EditWorkout extends Component {
                                 name='min'
                                 value={min}
                             >-</Button>
-                            <Button disabled>{min}</Button>
+                            <Button
+                            sx={{
+                                cursor: 'default',
+                                pointerEvents: 'none',
+                            }}
+                            >{min}</Button>
                             <Button 
                                 onClick={this.add}
                                 name='min'
@@ -125,7 +125,12 @@ class EditWorkout extends Component {
                                 name='max'
                                 value={max}
                             >-</Button>
-                            <Button disabled>{max}</Button>
+                            <Button 
+                            sx={{
+                                cursor: 'default',
+                                pointerEvents: 'none',
+                            }}
+                            >{max}</Button>
                             <Button 
                                 onClick={this.add}
                                 name='max'
