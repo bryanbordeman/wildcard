@@ -1,2 +1,2 @@
 add increment button +10 and +25 on select workout
-add edit button on ExerciseList
+Fix Sound on iOS. probably use-sound hook??

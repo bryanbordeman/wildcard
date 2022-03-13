@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import '../css/WorkoutForm.css'
+import { withStyles } from '@mui/styles';
 import SelectWorkout from './SelectWorkout' 
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
@@ -13,6 +14,20 @@ import Paper from '@mui/material/Paper';
 import Edit from '@mui/icons-material/Edit';
 import { v4 as uuidv4 } from 'uuid';
 import EditWorkout from './EditWorkout';
+
+
+const styles = {
+    listContainer:{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+    },
+    button:{
+        margin: '0.25rem'
+    }
+}
+
 
 class ExerciseList extends Component {
     constructor(props){
@@ -66,22 +81,24 @@ class ExerciseList extends Component {
 
     render() { 
         const { workouts, exercises } = this.state
+        const { classes } = this.props
 
-        const StyledPaper = styled(Paper)(({ theme }) => ({
-            backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-            ...theme.typography.body2,
-            padding: theme.spacing(2),
-            maxWidth: "auto",
-            color: theme.palette.text.primary,
-        }));
+        // const StyledPaper = styled(Paper)(({ theme }) => ({
+        //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        //     ...theme.typography.body2,
+        //     padding: theme.spacing(2),
+        //     maxWidth: "auto",
+        //     color: theme.palette.text.primary,
+        // }));
 
         const exerciseList = Object(exercises).map(exercise => (
-            <StyledPaper
+            <Paper
                 sx={{
-                my: 1,
-                mx: 'auto',
-                p: 2,
+                my: 0.5,
+                width: '100%',
+                maxWidth: '500px',
                 }}
+                variant="outlined"
                 key={uuidv4()}
             >
                 <Grid container wrap="nowrap" spacing={2}>
@@ -112,7 +129,7 @@ class ExerciseList extends Component {
                     </ListItem>
                 </Grid>
                 </Grid>
-            </StyledPaper>
+            </Paper>
         ))
         return (
             <div>
@@ -129,7 +146,7 @@ class ExerciseList extends Component {
                 />
                 {exerciseList.length > 0 && 
                     <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-                        {exerciseList}
+                        <div className={classes.listContainer}>{exerciseList}</div>
                     </Box>
                 }
             </div>
@@ -137,4 +154,4 @@ class ExerciseList extends Component {
     }
 }
 
-export default ExerciseList;
+export default withStyles(styles)(ExerciseList);

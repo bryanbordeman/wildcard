@@ -24,14 +24,15 @@ import { wildcardWorkout } from './wildcardWorkout';
 
 const styles = {
     addButtons:{
-        margin: '3rem',
+        marginTop: '3rem',
+        marginBottom: '1rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
     },
     button:{
-        margin: '0.25rem'
+        margin: '0.25rem',
     }
 }
 
@@ -177,6 +178,7 @@ class SelectWorkout extends Component {
             <div className={ classes.addButtons }>
                 <div className={ classes.button }>
                 <Button 
+                    style={{width: '230px'}}
                     variant='outlined' 
                     endIcon={<AddIcon />}
                     onClick={this.handleClickOpen}>
@@ -185,6 +187,7 @@ class SelectWorkout extends Component {
                 </div>
                 <div className={ classes.button }>
                 <Button 
+                    style={{width: '230px'}}
                     variant='outlined' 
                     endIcon={<ShuffleOutlinedIcon />}
                     onClick={this.handleWildcard}>
