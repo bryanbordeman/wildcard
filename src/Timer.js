@@ -11,10 +11,16 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import VolumeMuteOutlinedIcon from '@mui/icons-material/VolumeMuteOutlined';
 import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 
+import UIfx from 'uifx'; 
+
 import styles from './styles/TimerStyles'
 import { randomWorkout } from './randomWorkout'
 import beep from './audio/beep.mp3'
 import finalBeep from './audio/final-beep.mp3'
+
+const beepFx = new UIfx(beep);
+const finalBeepFx = new UIfx(finalBeep);
+
 
 class Timer extends Component {
   // static defaultProps = {workout: 'Wall Ball Cluster Clean to Thruster'}
@@ -45,6 +51,8 @@ class Timer extends Component {
     this.countDown = this.countDown.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
+    this.beep = this.beep.bind(this)
+    this.finalBeep = this.finalBeep.bind(this)
     
   }
 
@@ -66,14 +74,16 @@ startTimer(){
 
 beep(){
     // beeps at 3 seconds
-    // beep.load()
     if(!this.state.isMuted){
-      new Audio(beep).play()}
+      beepFx.play()
+      // new Audio(beep).play()
+    }
 }
 finalBeep(){
     //beeps at 0 seconds
     if(!this.state.isMuted){
-    new Audio(finalBeep).play()
+    finalBeepFx.play();
+    // new Audio(finalBeep).play()
     }
 }
 countDown(){
@@ -182,6 +192,7 @@ resetTimer(){
       <div>
         <div className={classes.topButtonContainer}>
           <div>
+            {/* <Button onClick={this.beep}>beep</Button> */}
             <Button 
               sx={{
                 margin: '20px'
