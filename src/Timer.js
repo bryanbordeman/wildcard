@@ -11,16 +11,14 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import VolumeMuteOutlinedIcon from '@mui/icons-material/VolumeMuteOutlined';
 import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 
-import UIfx from 'uifx'; 
-
 import styles from './styles/TimerStyles'
 import { randomWorkout } from './randomWorkout'
+
 import beep from './audio/beep.mp3'
 import finalBeep from './audio/final-beep.mp3'
 
-const beepFx = new UIfx(beep);
-const finalBeepFx = new UIfx(finalBeep);
-
+const beepFx = new Audio(beep)
+const finalBeepFx = new Audio(finalBeep)
 
 class Timer extends Component {
   // static defaultProps = {workout: 'Wall Ball Cluster Clean to Thruster'}
@@ -76,14 +74,12 @@ beep(){
     // beeps at 3 seconds
     if(!this.state.isMuted){
       beepFx.play()
-      // new Audio(beep).play()
     }
 }
 finalBeep(){
     //beeps at 0 seconds
     if(!this.state.isMuted){
     finalBeepFx.play();
-    // new Audio(finalBeep).play()
     }
 }
 countDown(){
@@ -175,6 +171,8 @@ resetTimer(){
 
   handleSound(){
     this.setState({isMuted: !this.state.isMuted})
+    beepFx.load();
+    finalBeepFx.load();
   }
 
   
