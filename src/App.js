@@ -26,7 +26,6 @@ class App extends Component {
     this.setState({workouts: JSON.parse(window.localStorage.getItem("workouts"))})
   }
   componentDidUpdate(){
-    window.addEventListener('load', this.setWindow, false);
     window.addEventListener('resize', this.setWindow, window.addEventListener('orientationchange', this.setWindow));
     return () => window.removeEventListener("resize", this.setWindow);
     

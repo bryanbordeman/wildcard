@@ -16,6 +16,7 @@ const workoutList = {
         "Kettle Bell Goblet Lunge"],
     "Gymnastics Movements": 
         ["Pistol Squat",
+        "Wall Walk",
         "Hip Extension",
         "Handstand Push-up",
         "Burpee",
@@ -23,14 +24,15 @@ const workoutList = {
         "Push-ups",
         "Sit-ups"],
     "Monostructural Movements":
-        ["Meter: Run",
+        [
+        // "100 Meter: Run",
         "Double Under",
-        "Handstand Walk"],
+        "Meter: Handstand Walk"],
     "Dumbbell Movements":
         ["Dumbell Hang Power Clean (no squat)",
         "Dumbbell Overhead Squat",
         "Dumbbell Hange Clean",
-        "Dumbbell Power Snatch",
+        "Dumbbell Snatch",
         "Dumbbell Thruster",
         "Dumbbell Deadlift",
         "Dumbbell Squat",
@@ -39,7 +41,7 @@ const workoutList = {
         "Devils Press",
         "Double Dumbbell Snatch"],
     "Barbell Movements":
-        ["Power Clean (no squat)",
+        ["Power Clean",
         "Overhead Squat",
         "Squat Clean",
         "Squat Snatch",

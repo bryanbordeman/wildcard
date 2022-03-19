@@ -13,12 +13,14 @@ import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 
 import styles from './styles/TimerStyles'
 import { randomWorkout } from './randomWorkout'
+import { isMobile } from "react-device-detect";
 
 import beep from './audio/beep.mp3'
 import finalBeep from './audio/final-beep.mp3'
 
 const beepFx = new Audio(beep)
 const finalBeepFx = new Audio(finalBeep)
+// beepFx.preload = "auto";
 
 class Timer extends Component {
   // static defaultProps = {workout: 'Wall Ball Cluster Clean to Thruster'}
@@ -72,14 +74,20 @@ startTimer(){
 
 beep(){
     // beeps at 3 seconds
+    // no great fix for audio delay on mobile??
     if(!this.state.isMuted){
+      !isMobile? 
+      new Audio(beep).play():
       beepFx.play()
     }
 }
 finalBeep(){
     //beeps at 0 seconds
+    // no great fix for audio delay on mobile??
     if(!this.state.isMuted){
-    finalBeepFx.play();
+    !isMobile? 
+    new Audio(finalBeep).play():
+    finalBeepFx.play()
     }
 }
 countDown(){
