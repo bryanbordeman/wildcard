@@ -11,7 +11,7 @@ class App extends Component {
       isLandscape: null,
       rounds: 0,
       workouts: [],
-      isListEmpty: true
+      isListEmpty: true,
     }
 
     this.setWindow = this.setWindow.bind(this)
@@ -26,9 +26,10 @@ class App extends Component {
     this.setState({workouts: JSON.parse(window.localStorage.getItem("workouts"))})
   }
   componentDidUpdate(){
-    window.addEventListener("resize", this.setWindow);
+    window.addEventListener('load', this.setWindow, false);
+    window.addEventListener('resize', this.setWindow, window.addEventListener('orientationchange', this.setWindow));
     return () => window.removeEventListener("resize", this.setWindow);
-  
+    
   }
 
   updateRounds(rounds){
@@ -53,9 +54,9 @@ class App extends Component {
 
   setWindow(){
     this.setState({windowWidth: window.innerWidth, windowHeight: window.innerHeight},
-      () => this.setState({isLandscape: this.state.windowWidth > this.state.windowHeight? true : false}))
+      () => this.setState({isLandscape: window.innerWidth > window.innerHeight? true : false}))
   }
-
+  
   render() { 
     const { isLandscape, rounds, workouts, isListEmpty } = this.state
     return (
