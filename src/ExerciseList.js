@@ -91,7 +91,7 @@ class ExerciseList extends Component {
         //     color: theme.palette.text.primary,
         // }));
 
-        const exerciseList = Object(exercises).map(exercise => (
+        const exerciseList = Object(exercises).slice(0).reverse().map(exercise => (
             <Paper
                 sx={{
                 my: 0.5,

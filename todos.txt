@@ -1,2 +1,4 @@
 add increment button +10 and +25 on select workout
-Fix sound speed
+Maybe add manual input for min and max??
+Fix sound speed on mobile
+Make Splash screen

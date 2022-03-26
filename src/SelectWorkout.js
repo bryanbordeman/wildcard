@@ -21,6 +21,7 @@ import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import { wildcardWorkout } from './wildcardWorkout';
+// import TextField from '@mui/material/TextField';
 
 const styles = {
     addButtons:{
@@ -35,7 +36,6 @@ const styles = {
         margin: '0.25rem',
     }
 }
-
 
 class SelectWorkout extends Component {
     constructor(props){
@@ -254,6 +254,13 @@ class SelectWorkout extends Component {
                                 value={min}
                             >+</Button>
                         </ButtonGroup>
+                        {/* <TextField  
+                                size="small"
+                                // placeholder={Number(min)}
+                                // defaultValue={min}
+                                type='number'
+                                onChange={(event) => this.setState({min: event.target.value})}
+                                /> */}
                     </Item>
                     <Item>
                         <Typography variant="caption" display="block" gutterBottom>
