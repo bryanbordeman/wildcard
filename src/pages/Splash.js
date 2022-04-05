@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
-import logo from './images/wildcard_logo.svg'
+import logo from '../images/wildcard_logo.svg'
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Dialog from '@mui/material/Dialog';
@@ -11,9 +11,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import IconButton from '@mui/material/IconButton';
-import styles from './styles/SplashStyles'
-import InstallPWA from './InstallPWA';
-import useIsIOS from './useIsIOS';
+import styles from '../styles/SplashStyles'
+import InstallPWA from '../components/InstallPWA';
+import useIsIOS from '../components/useIsIOS';
 
 function Splash(props) {
     const [open, setOpen] = React.useState(false);

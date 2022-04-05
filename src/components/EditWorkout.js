@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -30,7 +30,7 @@ class EditWorkout extends Component {
 
     componentDidUpdate(){
         if (this.state.min >= this.state.max){
-            this.setState({max: this.state.max + 1})
+            this.setState({max: Number(this.state.min) + 1})
         }
         
     }

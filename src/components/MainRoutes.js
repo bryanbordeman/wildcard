@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Splash from './Splash';
-import AddRounds from './AddRounds';
-import Timer from './Timer';
-import AddExercises from './AddExercises';
+import Splash from '../pages/Splash';
+import AddRounds from '../pages/AddRounds';
+import Timer from '../pages/Timer';
+import AddExercises from '../pages/AddExercises';
 
 
 class MainRoutes extends Component {

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Stepper from './Stepper';
-import ExerciseList from './ExerciseList'
-import styles from './styles/AddExcercisesStyles'
+import Stepper from '../components/Stepper';
+import ExerciseList from '../components/ExerciseList'
+import styles from '../styles/AddExcercisesStyles'
 
 class AddExercises extends Component {
     constructor(props){

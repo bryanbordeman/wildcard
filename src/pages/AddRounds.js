@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import Stepper from './Stepper';
-import styles from './styles/AddRoundsStyles'
+import Stepper from '../components/Stepper';
+import styles from '../styles/AddRoundsStyles'
 
 class AddRounds extends Component {
     constructor(props){

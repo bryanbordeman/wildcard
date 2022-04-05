@@ -35,6 +35,7 @@ const styles = {
     button:{
         margin: '0.25rem',
     }
+    
 }
 
 class SelectWorkout extends Component {
@@ -66,7 +67,7 @@ class SelectWorkout extends Component {
     }
     componentDidUpdate(){
         if (this.state.min >= this.state.max){
-            this.setState({max: this.state.max + 1})
+            this.setState({max: Number(this.state.min) + 1})
         }
         
     }
@@ -114,7 +115,6 @@ class SelectWorkout extends Component {
     };
 
     handleAddWorkout(){
-        
         let { movement, min, max } = this.state
             let workout = {
                 movement: movement, 
@@ -215,7 +215,6 @@ class SelectWorkout extends Component {
                     <FormControl fullWidth sx={{ m: 1, minWidth: 120}}>
                     <InputLabel htmlFor="movement-label">Movement</InputLabel>
                     <Select
-                        // native
                         labelId="movement-label"
                         name='movement'
                         value={movement}
@@ -248,19 +247,21 @@ class SelectWorkout extends Component {
                                 pointerEvents: 'none',
                             }}
                             >{min}</Button>
+                            {/* <TextField  
+                                style={{width: '60px'}}
+                                autoFocus
+                                size="small"
+                                defaultValue={min}
+                                type='number'
+                                onChange={(event) => this.setState({min: event.target.value})}
+                                /> */}
                             <Button 
                                 onClick={this.add}
                                 name='min'
                                 value={min}
                             >+</Button>
                         </ButtonGroup>
-                        {/* <TextField  
-                                size="small"
-                                // placeholder={Number(min)}
-                                // defaultValue={min}
-                                type='number'
-                                onChange={(event) => this.setState({min: event.target.value})}
-                                /> */}
+                        
                     </Item>
                     <Item>
                         <Typography variant="caption" display="block" gutterBottom>
@@ -278,6 +279,14 @@ class SelectWorkout extends Component {
                                     pointerEvents: 'none',
                                 }}
                                 >{max}</Button>
+                                {/* <TextField  
+                                // autoFocus
+                                style={{width: '60px'}}
+                                size="small"
+                                defaultValue={max}
+                                type='number'
+                                onChange={(event) => this.setState({max: event.target.value})}
+                                /> */}
                             <Button 
                                 onClick={this.add}
                                 name='max'
